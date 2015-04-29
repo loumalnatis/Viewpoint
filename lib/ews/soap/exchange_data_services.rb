@@ -269,7 +269,7 @@ module Viewpoint::EWS::SOAP
       [:to_folder_id, :item_ids].each do |k|
         validate_param(opts, k, true)
       end
-      return_new_ids = validate_param(opts, :return_new_item_ids, false, true)
+      #return_new_ids = validate_param(opts, :return_new_item_ids, false, true)
 
       req = build_soap! do |type, builder|
         if(type == :header)
@@ -278,7 +278,7 @@ module Viewpoint::EWS::SOAP
             builder.nbuild.parent.default_namespace = @default_ns
             builder.to_folder_id!(opts[:to_folder_id])
             builder.item_ids!(opts[:item_ids])
-            builder.return_new_item_ids!(return_new_ids)
+            #builder.return_new_item_ids!(return_new_ids)
           }
         end
       end
@@ -310,7 +310,7 @@ module Viewpoint::EWS::SOAP
       [:to_folder_id, :item_ids].each do |k|
         validate_param(opts, k, true)
       end
-      return_new_ids = validate_param(opts, :return_new_item_ids, false, true)
+      #return_new_ids = validate_param(opts, :return_new_item_ids, false, true)
 
       req = build_soap! do |type, builder|
         if(type == :header)
@@ -319,7 +319,7 @@ module Viewpoint::EWS::SOAP
             builder.nbuild.parent.default_namespace = @default_ns
             builder.to_folder_id!(opts[:to_folder_id])
             builder.item_ids!(opts[:item_ids])
-            builder.return_new_item_ids!(return_new_ids)
+            #builder.return_new_item_ids!(return_new_ids)
           }
         end
       end
