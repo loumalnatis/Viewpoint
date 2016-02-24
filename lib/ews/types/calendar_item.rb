@@ -69,15 +69,20 @@ module Viewpoint::EWS::Types
 
           # Remap attributes because ews_builder #dispatch_field_item! uses #build_xml!
           item_attributes = item.to_ews_item.map do |name, value|
-            if value.is_a? String
+            case value
+            when String
               {name => {text: value}}
-            elsif value.is_a? Hash
-              node = {name => {}}
-              value.each do |attrib_key, attrib_value|
-                attrib_key = camel_case(attrib_key) unless attrib_key == :text
-                node[name][attrib_key] = attrib_value
-              end
-              node
+            when Hash
+              {name => Viewpoint::EWS::SOAP::EwsBuilder.camel_case_attributes(value)}
+            # if value.is_a? String
+            #   {name => {text: value}}
+            # elsif value.is_a? Hash
+            #   node = {name => {}}
+            #   value.each do |attrib_key, attrib_value|
+            #     attrib_key = camel_case(attrib_key) unless attrib_key == :text
+            #     node[name][attrib_key] = attrib_value
+            #   end
+            #   node
             else
               {name => value}
             end
